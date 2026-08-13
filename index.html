@@ -1,0 +1,775 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <title>VECTIS INGENIERIE | Bureau d'études structures métalliques — Mably (Roanne)</title>
+  <meta name="description" content="Bureau d'études indépendant spécialisé structures métalliques à Mably près de Roanne (Loire, 42). Notes de calcul Eurocodes, plans d'exécution, diagnostics structurels, relevés et assistance technique.">
+  <link rel="canonical" href="https://www.vectis-ingenierie.fr/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="VECTIS INGENIERIE — Bureau d'études structures métalliques">
+  <meta property="og:description" content="Bureau d'études à Mably (Roanne) — Notes de calcul Eurocodes, plans d'exécution, diagnostics structurels.">
+  <meta property="og:url" content="https://www.vectis-ingenierie.fr/">
+  <meta property="og:locale" content="fr_FR">
+
+  <!-- Logos dans le même dossier que index.html pour le déploiement -->
+  <!-- Pour le test local : copier logo-carre.png et logo-horizontal.png ici -->
+  <link rel="icon" href="logo-carre.png" type="image/png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Schema.org LocalBusiness — aide le référencement local et les moteurs IA -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "VECTIS INGENIERIE",
+    "description": "Bureau d'études indépendant spécialisé dans la conception, le calcul et la production de plans pour les structures métalliques à Mably, près de Roanne.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "72 Route de Briennon",
+      "addressLocality": "Mably",
+      "postalCode": "42300",
+      "addressCountry": "FR",
+      "addressRegion": "Loire"
+    },
+    "email": "vectis.ingenierie@gmail.com",
+    "telephone": "TODO_AJOUTER_TELEPHONE",
+    "url": "https://www.vectis-ingenierie.fr",
+    "areaServed": ["Roanne", "Mably", "Loire", "Rhône-Alpes"],
+    "serviceType": [
+      "Bureau d'études structures métalliques",
+      "Notes de calcul Eurocodes",
+      "Plans d'exécution",
+      "Diagnostics structurels",
+      "Ombrières photovoltaïques"
+    ],
+    "priceRange": "Sur devis"
+  }
+  </script>
+
+  <style>
+    /* ========================================
+       VARIABLES & RESET
+    ======================================== */
+    :root {
+      --red:    #9d1b27;
+      --red2:   #bd2534;
+      --red3:   #7e111d;
+      --dark:   #101820;
+      --steel:  #26333d;
+      --muted:  #66717a;
+      --light:  #f4f6f7;
+      --white:  #fff;
+      --line:   #dde2e5;
+      --t:      .25s ease;
+      --r:      6px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html  { scroll-behavior: smooth; }
+    body  { font-family: Inter, Arial, sans-serif; color: var(--dark); line-height: 1.6; background: #fff; }
+    a     { text-decoration: none; color: inherit; }
+    img   { max-width: 100%; display: block; }
+    ul    { list-style: none; }
+
+    .wrap   { width: min(1180px, calc(100% - 40px)); margin: auto; }
+    section { padding: 90px 0; }
+
+    /* ========================================
+       TYPOGRAPHIE UTILITAIRES
+    ======================================== */
+    .eyebrow     { font-size: .72rem; text-transform: uppercase; letter-spacing: .16em; font-weight: 800; color: var(--red); }
+    .h2          { font-size: clamp(1.9rem, 3.5vw, 2.8rem); font-weight: 900; text-transform: uppercase; letter-spacing: -.03em; line-height: 1.05; margin: 10px 0 14px; }
+    .sub         { color: var(--muted); }
+    .title-block { text-align: center; max-width: 780px; margin: 0 auto 52px; }
+
+    /* ========================================
+       BOUTONS
+    ======================================== */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 22px; font-weight: 800; text-transform: uppercase;
+      font-size: .78rem; letter-spacing: .04em; border-radius: var(--r);
+      border: 1.5px solid transparent; cursor: pointer;
+      transition: background var(--t), color var(--t), border-color var(--t);
+      font-family: inherit;
+    }
+    .btn-red          { background: var(--red);  color: #fff; border-color: var(--red); }
+    .btn-red:hover    { background: var(--red3); border-color: var(--red3); }
+    .btn-ghost-light  { color: #fff; border-color: rgba(255,255,255,.6); background: rgba(255,255,255,.06); }
+    .btn-ghost-light:hover { background: #fff; color: var(--dark); border-color: #fff; }
+
+    /* ========================================
+       SCROLL REVEAL
+    ======================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .reveal.visible        { opacity: 1; transform: none; }
+    .reveal-d1             { transition-delay: .1s; }
+    .reveal-d2             { transition-delay: .2s; }
+    .reveal-d3             { transition-delay: .3s; }
+    .reveal-d4             { transition-delay: .4s; }
+
+    /* ========================================
+       HEADER
+    ======================================== */
+    header {
+      position: fixed; z-index: 100; top: 0; left: 0; right: 0;
+      background: rgba(255,255,255,.97);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(0,0,0,.07);
+      transition: box-shadow var(--t);
+    }
+    header.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,.09); }
+
+    .nav-inner  { height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .logo img   { height: 40px; width: auto; }
+
+    .nav-links  { display: flex; align-items: center; gap: 26px; font-size: .76rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
+    .nav-links a { position: relative; padding-bottom: 3px; transition: color var(--t); }
+    .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--red); transition: width var(--t); }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--red); }
+    .nav-links a:hover::after,
+    .nav-links a.active::after { width: 100%; }
+
+    .nav-cta { background: var(--red); color: #fff !important; padding: 10px 17px; border-radius: var(--r); }
+    .nav-cta:hover { background: var(--red3) !important; }
+    .nav-cta::after { display: none !important; }
+
+    .burger { display: none; background: none; border: none; cursor: pointer; padding: 6px; color: var(--dark); }
+
+    /* ========================================
+       HERO
+    ======================================== */
+    .hero {
+      min-height: 100vh;
+      padding-top: 78px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(105deg, rgba(5,10,14,.95) 0%, rgba(5,10,14,.72) 52%, rgba(5,10,14,.28) 100%),
+        url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=2000&q=88') center / cover no-repeat;
+    }
+    .hero-grid { display: grid; grid-template-columns: 1fr 370px; gap: 60px; align-items: center; padding: 70px 0; }
+
+    .hero-label { font-size: .72rem; text-transform: uppercase; letter-spacing: .18em; font-weight: 800; color: #a8b4bc; margin-bottom: 20px; }
+    .hero h1    { font-size: clamp(3rem, 6.5vw, 6rem); line-height: .9; text-transform: uppercase; letter-spacing: -.05em; font-weight: 900; margin-bottom: 24px; }
+    .hero h1 .accent { display: block; color: var(--red2); }
+    .hero-lead  { font-size: 1.05rem; color: #d8e0e5; max-width: 540px; line-height: 1.65; margin-bottom: 32px; }
+    .hero-btns  { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    /* panneau hero */
+    .hero-panel { background: rgba(6,12,16,.85); border-left: 4px solid var(--red); backdrop-filter: blur(8px); }
+    .hero-item  { display: grid; grid-template-columns: 50px 1fr; gap: 14px; align-items: start; padding: 18px 24px; border-bottom: 1px solid rgba(255,255,255,.09); }
+    .hero-item:last-child { border: none; }
+    .h-icon {
+      width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+      background: rgba(157,27,39,.2); border-radius: 4px;
+    }
+    .h-icon svg { width: 20px; height: 20px; stroke: var(--red2); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .hero-item strong { display: block; font-size: .88rem; text-transform: uppercase; letter-spacing: .03em; margin-bottom: 4px; }
+    .hero-item small  { font-size: .8rem; color: #9aaab3; line-height: 1.4; }
+
+    /* ========================================
+       ACTIVITÉS
+    ======================================== */
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .service {
+      padding: 28px 24px; border: 1px solid var(--line); background: #fff;
+      position: relative; overflow: hidden;
+      transition: transform var(--t), box-shadow var(--t);
+    }
+    .service::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 3px; background: var(--red); transition: width var(--t); }
+    .service:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(12,24,32,.11); }
+    .service:hover::before { width: 100%; }
+    .s-icon { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: #f8eaec; border-radius: var(--r); margin-bottom: 18px; }
+    .s-icon svg { width: 20px; height: 20px; stroke: var(--red); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .service h3 { font-size: .9rem; text-transform: uppercase; letter-spacing: .02em; font-weight: 800; margin-bottom: 10px; }
+    .service p  { font-size: .87rem; color: var(--muted); line-height: 1.6; }
+
+    /* ========================================
+       À PROPOS
+    ======================================== */
+    .about { padding: 0; background: var(--dark); }
+    .about-inner { display: grid; grid-template-columns: 1fr 1fr; min-height: 530px; }
+    .about-copy {
+      padding: 80px 64px 80px 0; color: #fff;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .about-copy .eyebrow { color: #c8303d; }
+    .about-copy .h2   { color: #fff; }
+    .about-copy p     { color: #bfcbd3; margin-bottom: 14px; font-size: .97rem; }
+    .about-bar        { width: 48px; height: 3px; background: var(--red); margin: 22px 0; }
+    .about-vals       { display: flex; flex-direction: column; gap: 10px; margin: 20px 0 32px; }
+    .about-val        { display: flex; align-items: center; gap: 11px; font-size: .88rem; color: #cad4da; }
+    .about-val svg    { flex-shrink: 0; width: 15px; height: 15px; stroke: var(--red2); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .about-photo {
+      background:
+        linear-gradient(to right, var(--dark) 0%, transparent 35%),
+        url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=85') center / cover no-repeat;
+    }
+
+    /* ========================================
+       RÉALISATIONS
+    ======================================== */
+    .projects { background: var(--light); }
+    .project-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+    .project {
+      min-height: 260px; display: flex; align-items: flex-end;
+      position: relative; overflow: hidden; color: #fff;
+    }
+    .project::after { content: ''; position: absolute; inset: 0; background: linear-gradient(transparent 20%, rgba(4,8,12,.88)); }
+    .project:hover .p-img { transform: scale(1.06); }
+    .p-img {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      transition: transform .55s ease;
+    }
+    .p-content { position: relative; z-index: 2; padding: 20px; }
+    .p-tag { font-size: .63rem; text-transform: uppercase; letter-spacing: .12em; font-weight: 700; color: var(--red2); margin-bottom: 5px; }
+    .project h3 { font-size: .93rem; margin-bottom: 4px; font-weight: 700; }
+    .project p  { font-size: .77rem; color: #c8d2d8; line-height: 1.4; }
+
+    /* ========================================
+       MÉTHODE
+    ======================================== */
+    .method-grid {
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      gap: 0; position: relative;
+    }
+    .method-grid::before {
+      content: ''; position: absolute;
+      top: 27px; left: 8%; right: 8%; height: 2px;
+      background: var(--line); z-index: 0;
+    }
+    .step { padding: 0 18px 0; position: relative; z-index: 1; }
+    .step-num {
+      width: 54px; height: 54px; display: flex; align-items: center; justify-content: center;
+      background: var(--red); color: #fff; font-size: 1.05rem; font-weight: 900;
+      border-radius: 50%; border: 4px solid #fff; box-shadow: 0 0 0 2px var(--red);
+      margin-bottom: 22px;
+    }
+    .step h3 { font-size: .85rem; text-transform: uppercase; letter-spacing: .04em; font-weight: 800; margin-bottom: 8px; }
+    .step p  { font-size: .83rem; color: var(--muted); line-height: 1.55; }
+
+    /* ========================================
+       CONTACT
+    ======================================== */
+    .contact { background: var(--dark); color: #fff; }
+    .contact-grid { display: grid; grid-template-columns: .72fr 1.44fr .68fr; gap: 48px; align-items: start; }
+
+    .c-logo img { max-width: 170px; background: #fff; padding: 14px; border-radius: var(--r); margin-bottom: 22px; }
+    .c-logo h3  { text-transform: uppercase; font-size: .85rem; letter-spacing: .06em; font-weight: 800; margin-bottom: 18px; }
+    .c-line { display: flex; align-items: flex-start; gap: 11px; margin: 13px 0; font-size: .87rem; color: #c0ccda; }
+    .c-line svg { flex-shrink: 0; margin-top: 2px; width: 15px; height: 15px; stroke: var(--red2); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .c-line a:hover { color: #fff; }
+
+    /* form */
+    .form-head { text-transform: uppercase; font-size: .85rem; letter-spacing: .06em; font-weight: 800; margin-bottom: 18px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .form-grid input,
+    .form-grid select,
+    .form-grid textarea {
+      width: 100%; padding: 13px 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.07);
+      color: #fff; font: inherit; font-size: .88rem;
+      border-radius: var(--r);
+      transition: border-color var(--t), background var(--t);
+      -webkit-appearance: none;
+    }
+    .form-grid input::placeholder,
+    .form-grid textarea::placeholder { color: rgba(255,255,255,.38); }
+    .form-grid select { color: rgba(255,255,255,.65); }
+    .form-grid select option { background: var(--steel); color: #fff; }
+    .form-grid input:focus,
+    .form-grid select:focus,
+    .form-grid textarea:focus { outline: none; border-color: var(--red2); background: rgba(255,255,255,.1); }
+    .form-grid textarea   { grid-column: 1 / -1; min-height: 128px; resize: vertical; }
+    .form-grid .f-submit  { grid-column: 1 / -1; }
+    .form-grid .f-submit .btn { width: 100%; justify-content: center; }
+    .form-ok {
+      display: none; margin-top: 14px; padding: 16px;
+      background: rgba(157,27,39,.18); border: 1px solid rgba(189,37,52,.5);
+      border-radius: var(--r); font-size: .87rem; color: #e5bdc2; text-align: center;
+    }
+
+    /* avantages */
+    .benefits { border-left: 1px solid rgba(255,255,255,.14); padding-left: 28px; }
+    .benefits h3 { text-transform: uppercase; font-size: .85rem; letter-spacing: .06em; font-weight: 800; margin-bottom: 18px; }
+    .benefit { display: flex; align-items: flex-start; gap: 12px; margin: 13px 0; font-size: .86rem; color: #bccad2; }
+    .b-dot { flex-shrink: 0; width: 18px; height: 18px; background: var(--red); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+    .b-dot svg { width: 9px; height: 9px; stroke: #fff; fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* ========================================
+       FOOTER
+    ======================================== */
+    footer { background: var(--red3); color: #fff; padding: 22px 0; font-size: .75rem; }
+    .foot  { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .foot a { text-decoration: underline; opacity: .75; }
+    .foot a:hover { opacity: 1; }
+
+    /* ========================================
+       RESPONSIVE
+    ======================================== */
+    @media (max-width: 1080px) {
+      .hero-grid         { grid-template-columns: 1fr; max-width: 680px; }
+      .hero-panel        { display: none; }
+.services-grid     { grid-template-columns: repeat(2, 1fr); }
+      .project-grid      { grid-template-columns: repeat(3, 1fr); }
+      .method-grid       { grid-template-columns: repeat(3, 1fr); }
+      .method-grid::before { display: none; }
+      .contact-grid      { grid-template-columns: 1fr 1.3fr; }
+      .benefits          { grid-column: 1 / -1; border-left: none; padding-left: 0; border-top: 1px solid rgba(255,255,255,.14); padding-top: 24px; }
+      .about-inner       { grid-template-columns: 1fr; }
+      .about-photo       { min-height: 320px; background: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=85') center / cover; }
+      .about-copy        { padding: 64px 0; }
+    }
+    @media (max-width: 700px) {
+      .nav-links {
+        display: none; flex-direction: column; align-items: flex-start;
+        position: fixed; top: 78px; left: 0; right: 0;
+        background: #fff; padding: 24px; gap: 18px;
+        border-bottom: 1px solid var(--line);
+        box-shadow: 0 12px 32px rgba(0,0,0,.13);
+      }
+      .nav-links.open { display: flex; }
+      .burger   { display: block; }
+      .nav-cta  { display: none; }
+      section   { padding: 64px 0; }
+      .hero     { min-height: auto; padding-bottom: 80px; }
+      .hero h1  { font-size: 3.2rem; }
+      .services-grid, .project-grid,
+      .method-grid, .contact-grid, .form-grid { grid-template-columns: 1fr; }
+      .form-grid textarea, .form-grid .f-submit { grid-column: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ==============================
+     HEADER
+============================== -->
+<header id="js-header">
+  <div class="wrap nav-inner">
+    <a href="#accueil" class="logo">
+      <img src="logo-horizontal.png" alt="VECTIS INGENIERIE">
+    </a>
+    <button class="burger" id="js-burger" aria-label="Menu" aria-expanded="false">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+    <nav class="nav-links" id="js-nav">
+      <a href="#accueil">Accueil</a>
+      <a href="#activites">Activités</a>
+      <a href="#realisations">Réalisations</a>
+      <a href="#methode">Méthode</a>
+      <a href="#apropos">À propos</a>
+      <a href="#contact" class="nav-cta">Demander un devis</a>
+    </nav>
+  </div>
+</header>
+
+
+<!-- ==============================
+     HERO
+============================== -->
+<section class="hero" id="accueil">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="hero-label">Bureau d'études · Structures métalliques · Mably (Roanne, Loire)</p>
+      <h1>Concevoir.<span class="accent">Calculer.</span>Réaliser.</h1>
+      <p class="hero-lead">VECTIS INGENIERIE accompagne les entreprises de charpente, maîtres d'œuvre et industriels dans leurs projets de structures métalliques — de la conception aux plans de fabrication.</p>
+      <div class="hero-btns">
+        <a class="btn btn-red" href="#activites">Nos activités</a>
+        <a class="btn btn-ghost-light" href="#contact">Demander un devis</a>
+      </div>
+    </div>
+    <div class="hero-panel">
+      <div class="hero-item">
+        <div class="h-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 12h18M3 6l9-3 9 3M3 18l9 3 9-3"/></svg>
+        </div>
+        <div>
+          <strong>Études de structures</strong>
+          <small>Calculs Eurocodes et modélisation 3D</small>
+        </div>
+      </div>
+      <div class="hero-item">
+        <div class="h-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="12" y2="16"/></svg>
+        </div>
+        <div>
+          <strong>Plans d'exécution</strong>
+          <small>Plans d'ensemble, fabrication et assemblage</small>
+        </div>
+      </div>
+      <div class="hero-item">
+        <div class="h-icon">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <div>
+          <strong>Diagnostics &amp; relevés</strong>
+          <small>Inspection sur site et avis techniques</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==============================
+     ACTIVITÉS
+============================== -->
+<section id="activites">
+  <div class="wrap">
+    <div class="title-block">
+      <div class="eyebrow">Nos activités</div>
+      <h2 class="h2">Une expertise au service de vos projets</h2>
+      <p class="sub">Prestations ciblées pour entreprises de charpente, maîtres d'œuvre, architectes, industriels et maîtres d'ouvrage.</p>
+    </div>
+    <div class="services-grid">
+
+      <article class="service reveal">
+        <div class="s-icon"><svg viewBox="0 0 24 24"><path d="M3 12h18M3 6l9-3 9 3M3 18l9 3 9-3"/></svg></div>
+        <h3>Études de structures métalliques</h3>
+        <p>Conception, modélisation, dimensionnement et vérification de charpentes, mezzanines, passerelles, escaliers, carports et ouvrages spéciaux.</p>
+      </article>
+
+      <article class="service reveal reveal-d1">
+        <div class="s-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+        <h3>Notes de calcul</h3>
+        <p>Établissement de notes de calcul détaillées selon les Eurocodes : charges permanentes, exploitation, neige, vent et séisme.</p>
+      </article>
+
+      <article class="service reveal reveal-d2">
+        <div class="s-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></div>
+        <h3>Plans d'exécution</h3>
+        <p>Plans d'ensemble, plans de fabrication, détails d'assemblages, nomenclatures et fichiers DXF pour la découpe.</p>
+      </article>
+
+      <article class="service reveal">
+        <div class="s-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+        <h3>Diagnostics de structures</h3>
+        <p>Inspection visuelle, analyse des désordres, vérification de capacité portante et définition de solutions de renforcement.</p>
+      </article>
+
+      <article class="service reveal reveal-d1">
+        <div class="s-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/><line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/></svg></div>
+        <h3>Relevés sur site</h3>
+        <p>Relevés dimensionnels, prises de cotes, reportage photographique et repérage des structures existantes.</p>
+      </article>
+
+      <article class="service reveal reveal-d2">
+        <div class="s-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
+        <h3>Structures photovoltaïques</h3>
+        <p>Études d'ombrières et carports, vérification de bâtiments existants avant installation et conception de renforcements.</p>
+      </article>
+
+      <article class="service reveal">
+        <div class="s-icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+        <h3>Assistance technique</h3>
+        <p>Conseils de conception, échanges avec les entreprises, optimisation des profils et accompagnement jusqu'à la fabrication.</p>
+      </article>
+
+      <article class="service reveal reveal-d1">
+        <div class="s-icon"><svg viewBox="0 0 24 24"><polyline points="4 20 4 16 8 16 8 12 12 12 12 8 16 8 16 4 20 4"/><line x1="4" y1="20" x2="20" y2="20"/></svg></div>
+        <h3>Escaliers &amp; ouvrages secondaires</h3>
+        <p>Escaliers droits ou tournants, garde-corps, plateformes, supports techniques et structures métalliques sur mesure.</p>
+      </article>
+
+      <article class="service reveal reveal-d2">
+        <div class="s-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M3 10v11"/><path d="M21 10v11"/><path d="M3 10l9-7 9 7"/><path d="M9 21v-7h6v7"/></svg></div>
+        <h3>Bâtiments industriels</h3>
+        <p>Portiques, contreventements, pannes, lisses, chemins de roulement et extensions de bâtiments industriels.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ==============================
+     À PROPOS
+============================== -->
+<div class="about" id="apropos">
+  <div class="wrap about-inner">
+    <div class="about-copy reveal">
+      <div class="eyebrow">À propos de</div>
+      <h2 class="h2">VECTIS<br>INGENIERIE</h2>
+      <div class="about-bar"></div>
+      <p>Bureau d'études indépendant basé à Mably, près de Roanne (Loire), VECTIS INGENIERIE est spécialisé dans la conception, le calcul et la production de plans pour les structures métalliques.</p>
+      <p>La réactivité, la rigueur technique et la recherche de solutions réalistes constituent le cœur de chaque mission — avec une attention particulière à la fabricabilité et à la maîtrise du poids des ouvrages.</p>
+      <div class="about-vals">
+        <div class="about-val"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Réactivité et disponibilité à chaque étape</div>
+        <div class="about-val"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Calculs conformes aux Eurocodes en vigueur</div>
+        <div class="about-val"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Solutions optimisées pour la fabrication</div>
+        <div class="about-val"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Interlocuteur unique, sans intermédiaire</div>
+      </div>
+      <a class="btn btn-red" href="#contact">Parler de votre projet →</a>
+    </div>
+    <div class="about-photo"></div>
+  </div>
+</div>
+
+
+<!-- ==============================
+     RÉALISATIONS
+     TODO: remplacer les photos Unsplash par de vraies photos de chantier
+     TODO: remplacer les textes par de vrais projets (anonymisés si besoin)
+============================== -->
+<section class="projects" id="realisations">
+  <div class="wrap">
+    <div class="title-block">
+      <div class="eyebrow">Réalisations</div>
+      <h2 class="h2">Des projets variés et exigeants</h2>
+    </div>
+    <div class="project-grid">
+
+      <article class="project reveal">
+        <div class="p-img" style="background-image:url('https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=700&q=80')"></div>
+        <div class="p-content">
+          <p class="p-tag">Photovoltaïque</p>
+          <h3>Ombrière carport solaire</h3>
+          <p>Structure acier, calculs et plans d'exécution.</p>
+        </div>
+      </article>
+
+      <article class="project reveal reveal-d1">
+        <div class="p-img" style="background-image:url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=700&q=80')"></div>
+        <div class="p-content">
+          <p class="p-tag">Industriel</p>
+          <h3>Bâtiment industriel portique</h3>
+          <p>Étude complète, stabilité et plans de fabrication.</p>
+        </div>
+      </article>
+
+      <article class="project reveal reveal-d2">
+        <div class="p-img" style="background-image:url('https://images.unsplash.com/photo-1531835551805-16d864c8d311?auto=format&fit=crop&w=700&q=80')"></div>
+        <div class="p-content">
+          <p class="p-tag">Ouvrage spécial</p>
+          <h3>Escalier métallique sur mesure</h3>
+          <p>Modélisation 3D, note de calcul et plans.</p>
+        </div>
+      </article>
+
+      <article class="project reveal reveal-d3">
+        <div class="p-img" style="background-image:url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=700&q=80')"></div>
+        <div class="p-content">
+          <p class="p-tag">Diagnostic</p>
+          <h3>Extension &amp; renforcement</h3>
+          <p>Vérification portante et solution de confortement.</p>
+        </div>
+      </article>
+
+      <article class="project reveal reveal-d4">
+        <div class="p-img" style="background-image:url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=700&q=80')"></div>
+        <div class="p-content">
+          <p class="p-tag">Structure</p>
+          <h3>Charpente métallique</h3>
+          <p>Dimensionnement Eurocodes et plans d'exécution.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ==============================
+     MÉTHODE
+============================== -->
+<section id="methode">
+  <div class="wrap">
+    <div class="title-block">
+      <div class="eyebrow">Notre méthode</div>
+      <h2 class="h2">Une mission claire à chaque étape</h2>
+    </div>
+    <div class="method-grid">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <h3>Analyse</h3>
+        <p>Lecture des documents, définition du besoin et des hypothèses de calcul.</p>
+      </div>
+      <div class="step reveal reveal-d1">
+        <div class="step-num">02</div>
+        <h3>Relevé</h3>
+        <p>Visite et prises de cotes sur site lorsque la mission le nécessite.</p>
+      </div>
+      <div class="step reveal reveal-d2">
+        <div class="step-num">03</div>
+        <h3>Calcul</h3>
+        <p>Modélisation, dimensionnement et justification réglementaire Eurocodes.</p>
+      </div>
+      <div class="step reveal reveal-d3">
+        <div class="step-num">04</div>
+        <h3>Plans</h3>
+        <p>Production des documents nécessaires à l'exécution et à la fabrication.</p>
+      </div>
+      <div class="step reveal reveal-d4">
+        <div class="step-num">05</div>
+        <h3>Échanges</h3>
+        <p>Accompagnement technique et ajustements jusqu'à validation finale.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==============================
+     CONTACT
+============================== -->
+<section class="contact" id="contact">
+  <div class="wrap contact-grid">
+
+    <div class="c-logo">
+      <img src="logo-carre.png" alt="VECTIS INGENIERIE">
+      <h3>VECTIS INGENIERIE</h3>
+      <div class="c-line">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>72 Route de Briennon<br>42300 Mably</span>
+      </div>
+      <div class="c-line">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <a href="mailto:vectis.ingenierie@gmail.com">vectis.ingenierie@gmail.com</a>
+      </div>
+      <div class="c-line">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.34 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <!-- TODO: remplacer XX XX XX XX XX par le vrai numéro -->
+        <span>XX XX XX XX XX</span>
+      </div>
+    </div>
+
+    <div>
+      <p class="form-head">Demande de contact</p>
+      <!--
+        CONFIGURATION FORMSPREE (formulaire sans serveur, gratuit)
+        1. Créez un compte sur https://formspree.io
+        2. Cliquez "New Form" → copiez l'identifiant (ex: xkgbzqvp)
+        3. Remplacez VOTRE_ID_FORMSPREE ci-dessous par cet identifiant
+      -->
+      <form class="form-grid" id="js-form" action="https://formspree.io/f/VOTRE_ID_FORMSPREE" method="POST">
+        <input type="text"  name="nom_societe" placeholder="Nom / Société" required autocomplete="organization">
+        <input type="email" name="email"        placeholder="Email" required autocomplete="email">
+        <input type="tel"   name="telephone"    placeholder="Téléphone" autocomplete="tel">
+        <select name="projet">
+          <option value="">Type de projet…</option>
+          <option>Étude de structure métallique</option>
+          <option>Note de calcul Eurocodes</option>
+          <option>Plans d'exécution</option>
+          <option>Diagnostic structurel</option>
+          <option>Relevé sur site</option>
+          <option>Ombrière / photovoltaïque</option>
+          <option>Bâtiment industriel</option>
+          <option>Escalier ou ouvrage secondaire</option>
+          <option>Autre demande</option>
+        </select>
+        <textarea name="message" placeholder="Décrivez votre projet : nature, dimensions approximatives, localisation, documents disponibles, délai souhaité…" required></textarea>
+        <div class="f-submit">
+          <button type="submit" class="btn btn-red" id="js-submit">Envoyer la demande →</button>
+        </div>
+      </form>
+      <div class="form-ok" id="js-form-ok">
+        Votre message a bien été envoyé. Vous recevrez une réponse sous 48 h.
+      </div>
+    </div>
+
+    <div class="benefits">
+      <h3>Pourquoi VECTIS ?</h3>
+      <div class="benefit"><div class="b-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span>Interlocuteur unique du cadrage à la livraison</span></div>
+      <div class="benefit"><div class="b-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span>Réponse garantie sous 48 h</span></div>
+      <div class="benefit"><div class="b-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span>Calculs conformes aux Eurocodes</span></div>
+      <div class="benefit"><div class="b-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span>Plans optimisés pour la fabrication</span></div>
+      <div class="benefit"><div class="b-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span>Devis gratuit, sans engagement</span></div>
+    </div>
+
+  </div>
+</section>
+
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 VECTIS INGENIERIE — Tous droits réservés</span>
+    <span>
+      <a href="mentions-legales.html">Mentions légales</a> ·
+      <a href="mentions-legales.html#confidentialite">Politique de confidentialité</a>
+    </span>
+  </div>
+</footer>
+
+
+<script>
+  /* menu mobile */
+  const burger  = document.getElementById('js-burger');
+  const nav     = document.getElementById('js-nav');
+  burger.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open);
+  });
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    nav.classList.remove('open');
+    burger.setAttribute('aria-expanded', false);
+  }));
+
+  /* ombre header au scroll */
+  const hdr = document.getElementById('js-header');
+  window.addEventListener('scroll', () => {
+    hdr.classList.toggle('scrolled', window.scrollY > 30);
+  }, { passive: true });
+
+  /* lien actif selon la section visible */
+  const anchors  = document.querySelectorAll('section[id], .about[id]');
+  const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    anchors.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+    navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
+  }, { passive: true });
+
+  /* scroll reveal */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* formulaire Formspree (AJAX — pas de rechargement de page) */
+  const form    = document.getElementById('js-form');
+  const formOk  = document.getElementById('js-form-ok');
+  const submitBtn = document.getElementById('js-submit');
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    submitBtn.textContent = 'Envoi en cours…';
+    submitBtn.disabled = true;
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' }
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        formOk.style.display = 'block';
+      } else {
+        submitBtn.textContent = 'Erreur — réessayez';
+        submitBtn.disabled = false;
+      }
+    } catch {
+      submitBtn.textContent = 'Erreur réseau — réessayez';
+      submitBtn.disabled = false;
+    }
+  });
+</script>
+
+</body>
+</html>
